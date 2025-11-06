@@ -2,8 +2,8 @@
 # SPDX-FileCopyrightText: 2025 Dokozoyanonukko 
 # SPDX-License-Identifier: BSD-3-Clause
 
-ng(){
-    echo ${1} 行目が違うよ
+ng () {
+    echo ${1}行目が違うよ
     res=1
 }
 
