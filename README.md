@@ -1,21 +1,32 @@
 # schedule -逆算スケジューラ
+---
 出発時刻と必要な準備から逆算して起床時刻や所要時間などを算出するスケジューリング支援ツール
 睡眠時間算出機能付き
 
+![test](https://github.com/Dokozoyanonukko/robosys2025/actions/workflows/test.yml/badge.svg)
+
 ## 使い方
+---
 ### リポジトリの取得
-リポジトリをコピーしたいディレクトリで以下のコマンドを入力してください
+---
+リポジトリをコピーしたいディレクトリで以下のコマンドを入力してください。
 ```bash
 git clone git@github.com:Dokozoyanonukko/robosys2025.git
 ```
-その後、以下のディレクトリに移動してください
+その後、以下のディレクトリに移動してください。
 ```bash
 cd robosys2025
 ```
 
 ### 入力
-robosys2025のディレクトリで、以下の形式で入力ファイル（例：input.txt）を作成してください
-最低3行必須です
+---
+robosys2025のディレクトリで、以下の形式で入力ファイル（例：input.txt）を作成してください。
+
+:::note warn
+注意
+最低3行必須です。
+タスク名以外は、スペース含む全てを半角文字で入力してください。
+:::
 
 ```
 1行目：現在時刻（YYYY/MM/DD HH:MM）  
@@ -37,7 +48,7 @@ robosys2025のディレクトリで、以下の形式で入力ファイル（例
 
 作成したテキストファイル名がinput.txtの場合：
 ```bash
-python schedule < input.txt
+./schedule < input.txt
 ```
 
 ### 出力
@@ -53,7 +64,7 @@ python schedule < input.txt
 
 ## 必要なソフトウェア
 - Python
-    - テスト済みバージョン: 
+    - テスト済みバージョン: 3.7, 3.8, 3.9, 3.10, 3.11, 3.12
 
 ## テスト環境
 - Ubuntu 24.04 LTS
