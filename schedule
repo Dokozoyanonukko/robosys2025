@@ -1,7 +1,13 @@
 #!/usr/bin/python3
+# SPDX-FileCopyrightText: 2025 Dokozoyanonukko
+# SPDX-License-Identifier: BSD-3-Clause
 
 import sys
 from datetime import datetime, timedelta
+
+def error():
+    sys.exit(1)
+
 
 #初期化ありの変数を宣言
 total = 0
@@ -13,10 +19,57 @@ for line in sys.stdin: #1行ずつ読み取ってlineに代入
     clean_line = line.strip() #前後の空白を除去
     lines.append(clean_line) #リストに追加
 
+###以上入力に対する処理###
+if len(lines) == 0: #入力がテキストファイルでない（≒行数０）
+    error()
+
+if all(line == "" for line in lines): #ファイルが空
+    error()
+
+if len(lines) < 3: #3行未満
+    error()
+
+for dt_line in lines[:2]:
+    #日付と時刻の間に空白がない
+    if " " not in dt_line:
+        error()
+
+    # 日付と時刻に分割
+    try:
+        date_part, time_part = dt_line.split()
+    except ValueError:
+        error()
+
+    # 日付の区切り "/" が "-" になっている
+    if "-" in date_part:
+        error()
+
+    # 時刻の ":" が全角になっている
+    if "：" in time_part:
+        error()
+
 for item in lines[2:]: #タスクリストを1行ずつ読み取ってitemに代入
     clean_item = item.strip() #前後の空白を除去
-    task, min_str = clean_item.split() #タスク名と所要時間に分割
-    total += int(min_str) #所要時間をint型にして足し合わせ
+
+    ###タスクに関する例外###
+    # タスクがない
+    if clean_item == "":
+        error()
+
+    parts = clean_item.split()
+
+    # タスク名と所要時間の間に空白がない
+    if len(parts) != 2:
+        error()
+
+    task, min_str = parts
+
+    # 所要時間が整数でない
+    if not min_str.isdigit():
+        error()
+
+    total += int(min_str)  #所要時間をint型にして足し合わせ
+
 
 ##時刻計算のための変数を取得##
 #時刻をdatetime型に変更
