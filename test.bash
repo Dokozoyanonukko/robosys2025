@@ -10,20 +10,11 @@ ng () {
 res=0
 
 ### NORMAL INPUT ###
+input_normal=$'2025/11/29 23:30\n2025/11/30 07:00\n身支度 30\n朝食 20\n休憩 10'
+expected=$'2025-11-30 06:00:00\n2025-11-30 06:55:00\n60.0\n390.0'
 
-input_normal="2025/11/29 23:30
-2025/11/30 07:00
-身支度 30
-朝食 20
-休憩 10"
-
-expected="2025-11-30 06:00:00
-2025-11-30 06:55:00
-60
-390"
-
-out=$(echo "$input_normal" | ./schedule)
-[ "${out}" = "${expected}" ] || ng "$LINENO"
+out=$(printf "%s" "$input_normal" | ./schedule)
+[[ "$out" == "$expected" ]] || ng "$LINENO"
 
 ### STRANGE INPUT ###
 # 1: テキストでない（＝ただの文字列）
@@ -70,9 +61,7 @@ out=$(echo "2025-11-29 23:30
 [ "$out" = "" ] || ng "$LINENO"
 
 
-###結果
-#
-####結果は###
+###結果###
 [ "${res}" = 0 ] && echo OK
 exit $res
 
