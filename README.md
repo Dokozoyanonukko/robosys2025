@@ -7,7 +7,7 @@
 ## 使い方
                                                                                                                  
 リポジトリをコピーしたいディレクトリにて以下の操作を行ってください。作成するテキストファイルの名前は任意です。
-（入力ファイル名がinput.txtのとき）
+（例：入力ファイル名がinput.txtのとき）
 
 ```bash
 $ git clone git@github.com:Dokozoyanonukko/robosys2025.git
